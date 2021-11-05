@@ -309,6 +309,7 @@ def delete_found_comments(commentsDictionary):
 
     # Deletes specified comment IDs
     def delete(commentIDs):
+        print("Deleting Comment ID: " + commentIDs)
         youtube.comments().setModerationStatus(id=commentIDs, moderationStatus="rejected").execute()
 
     print("Deleting Comments. Please Wait...")
@@ -336,7 +337,7 @@ def check_deleted_comments(commentsDictionary):
             fields="items",
             textFormat="plainText"
         ).execute()
-        print("Verifying Comments Deleted..." + "."*j, end="\r")
+        print("Verifying Comments Deleted..." + "Remaining: " + i, end="\r")
         j += 1
 
         if results["items"]:  # Check if the items result is empty
